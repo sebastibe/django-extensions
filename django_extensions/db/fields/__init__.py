@@ -318,9 +318,9 @@ class ShortUUIDField(UUIDField):
 
     def __init__(self, *args, **kwargs):
         super(ShortUUIDField, self).__init__(*args, **kwargs)
+        kwargs.setdefault('max_length', 22)
         if not HAS_SHORT_UUID:
             raise ImproperlyConfigured("'shortuuid' module is required for ShortUUIDField. (Do you have Python 2.5 or higher installed ?)")
-        kwargs['max_length'] = 22
 
     def create_uuid(self):
         if not self.version or self.version == 4:
